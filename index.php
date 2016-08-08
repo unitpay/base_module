@@ -10,13 +10,16 @@ class UnitPayEvent
 {
     public function check($params)
     {
-         $unitPayModel = UnitPayModel::getInstance();
+        try {
+            $unitPayModel = UnitPayModel::getInstance();
 
-         if ($unitPayModel->getAccountByName($params['account']))
-         {
-            return true;
-         }
-         return 'Character not found';
+            if ($unitPayModel->getAccountByName($params['account'])) {
+                return true;
+            }
+            return 'Character not found';
+        }catch(Exception $e){
+            return $e->getMessage();
+        }
     }
 
     public function pay($params)

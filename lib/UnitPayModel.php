@@ -50,6 +50,11 @@ class UnitPayModel
             ';
             
         $result = $this->mysqli->query($query);
+
+        if (!$result){
+            throw new Exception($this->mysqli->error);
+        }
+
         return $result->fetch_object();
     }
 
@@ -82,7 +87,11 @@ class UnitPayModel
          
         $result = $this->mysqli
             ->query($sql);
-            
+
+        if (!$result){
+            throw new Exception($this->mysqli->error);
+        }
+
         return $result->fetch_object();
     }
     
