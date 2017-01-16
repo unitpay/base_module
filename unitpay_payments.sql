@@ -8,5 +8,5 @@ CREATE TABLE IF NOT EXISTS `unitpay_payments` (
   `dateComplete` datetime DEFAULT NULL,
   `status` tinyint(4) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
