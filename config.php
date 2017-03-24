@@ -23,4 +23,7 @@ class Config
     const DB_PASS = 'secret';
     // Назывние базы
     const DB_NAME = 'base_modul';
+    // номер порта(необязательно)
+    const DB_PORT = '';
+
 }
