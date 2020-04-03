@@ -93,47 +93,41 @@ class UnitPay
 
     private function getResponseSuccess($message)
     {
-        return json_encode(array(
-            "jsonrpc" => "2.0",
-            "result" => array(
-                "message" => $message
-            ),
-            'id' => 1,
-        ));
+        return json_encode(
+            array(
+                'result' => array(
+                    'message' => $message
+                )
+            )
+        );
     }
 
     private function getResponseError($message)
     {
-        return json_encode(array(
-            "jsonrpc" => "2.0",
-            "error" => array(
-                "code" => -32000,
-                "message" => $message
-            ),
-            'id' => 1
-        ));
-    }
-
-    private function getMd5Sign($params, $secretKey)
-    {
-        ksort($params);
-        unset($params['sign']);
-        return md5(join(null, $params).$secretKey);
+        return json_encode(
+            array(
+                'error' => array(
+                    'message' => $message
+                )
+            )
+        );
     }
 
     /**
-     * @param $method
+     * @param       $method
      * @param array $params
-     * @param $secretKey
+     * @param       $secretKey
+     *
      * @return string
      */
     private function getSha256SignatureByMethodAndParams($method, array $params, $secretKey)
     {
-        $delimiter = '{up}';
         ksort($params);
         unset($params['sign']);
         unset($params['signature']);
+        array_push($params, $secretKey);
+        array_unshift($params, $method);
 
-        return hash('sha256', $method.$delimiter.join($delimiter, $params).$delimiter.$secretKey);
+        return hash('sha256', join('{up}', $params));
     }
 }
