@@ -24,7 +24,7 @@ class UnitPayModel
         }
     }
 
-    function createPayment($unitpayId, $account, $sum, $itemsCount)
+    public function createPayment($unitpayId, $account, $sum, $itemsCount)
     {
         $query = '
             INSERT INTO
@@ -43,7 +43,7 @@ class UnitPayModel
         return $this->mysqli->query($query);
     }
 
-    function getPaymentByUnitpayId($unitpayId)
+    public function getPaymentByUnitpayId($unitpayId)
     {
         $query = '
                 SELECT * FROM
@@ -62,7 +62,7 @@ class UnitPayModel
         return $result->fetch_object();
     }
 
-    function confirmPaymentByUnitpayId($unitpayId)
+    public function confirmPaymentByUnitpayId($unitpayId)
     {
         $query = '
                 UPDATE
@@ -77,7 +77,7 @@ class UnitPayModel
         return $this->mysqli->query($query);
     }
     
-    function getAccountByName($account)
+    public function getAccountByName($account)
     {
         $sql = "
             SELECT
@@ -99,7 +99,7 @@ class UnitPayModel
         return $result->fetch_object();
     }
     
-    function donateForAccount($account, $count)
+    public function donateForAccount($account, $count)
     {
         $query = "
             UPDATE

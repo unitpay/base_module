@@ -34,4 +34,5 @@ $payment = new UnitPay(
     new UnitPayEvent()
 );
 
+header('Content-Type: application/json');
 echo $payment->getResult();
